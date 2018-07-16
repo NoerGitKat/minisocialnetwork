@@ -21,6 +21,7 @@ const Login = ({ email, password, errors, onSubmit, onChange }) => {
                   value={email}
                   onChange={onChange}
                 />
+                {errors ? errors.email : <div />}
               </div>
               <div className="form-group">
                 <input
@@ -31,6 +32,7 @@ const Login = ({ email, password, errors, onSubmit, onChange }) => {
                   value={password}
                   onChange={onChange}
                 />
+                {errors ? errors.password : <div />}
               </div>
               <input type="submit" className="btn btn-info btn-block mt-4" />
             </form>

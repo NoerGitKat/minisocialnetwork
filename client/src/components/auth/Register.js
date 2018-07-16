@@ -19,15 +19,6 @@ const Register = ({
           <div className="col-md-8 m-auto">
             <h1 className="display-4 text-center">Sign Up</h1>
             <p className="lead text-center">Create your DevConnector account</p>
-            <button
-              onClick={() =>
-                registerUser({
-                  msg: "it works!!!"
-                })
-              }
-            >
-              Click me!
-            </button>
             <form noValidate onSubmit={onSubmit}>
               <div className="form-group">
                 <input
