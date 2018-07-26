@@ -32,6 +32,13 @@ class RegisterCompose extends React.Component {
     }
   };
 
+  componentDidMount() {
+    const { isAuthenticated, history } = this.props;
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }
+
   render() {
     return <Register {...this.state} {...this.props} />;
   }

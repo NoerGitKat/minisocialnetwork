@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./../utils/setAuthToken";
-import { setCurrentUser } from "./../actions/authAction";
+import { setCurrentUser, logOut } from "./../actions/authAction";
 import store from "./../store";
 
 import RegisterContainer from "./RegisterContainer";
 import LoginContainer from "./LoginContainer";
-import Navbar from "../components/layout/Navbar";
+import NavbarContainer from "./NavbarContainer";
 import Footer from "../components/layout/Footer";
-import Landing from "../components/layout/Landing";
+import LandingContainer from "./LandingContainer";
 
 import "../App.css";
 
@@ -21,6 +21,17 @@ if (localStorage.jwtToken) {
   const decoded = jwt_decode(localStorage.jwtToken);
   // Set current user and isAuthenticated
   store.dispatch(setCurrentUser(decoded));
+
+  //Check for expired token
+  const currentTime = Date.now() / 1000;
+  if (decoded.exp < currentTime) {
+    // Logout user
+    store.dispatch(logOut());
+    // TODO: Clear current Profile
+
+    //Redirect to login
+    window.location.href = "/login";
+  }
 }
 
 class RouterContainer extends React.Component {
@@ -29,8 +40,8 @@ class RouterContainer extends React.Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
-            <Route exact path="/" component={Landing} />
+            <NavbarContainer />
+            <Route exact path="/" component={LandingContainer} />
             <div className="container">
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/login" component={LoginContainer} />

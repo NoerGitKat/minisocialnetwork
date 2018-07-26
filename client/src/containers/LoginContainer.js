@@ -26,6 +26,13 @@ class LoginCompose extends React.Component {
     }
   };
 
+  componentDidMount() {
+    const { isAuthenticated, history } = this.props;
+    if (isAuthenticated) {
+      history.push("/dashboard");
+    }
+  }
+
   render() {
     return <Login {...this.state} {...this.props} />;
   }
