@@ -11,6 +11,7 @@ import LoginContainer from "./LoginContainer";
 import NavbarContainer from "./NavbarContainer";
 import Footer from "../components/layout/Footer";
 import LandingContainer from "./LandingContainer";
+import DashboardContainer from "./DashboardContainer";
 
 import "../App.css";
 
@@ -43,6 +44,7 @@ class RouterContainer extends React.Component {
             <NavbarContainer />
             <Route exact path="/" component={LandingContainer} />
             <div className="container">
+              <Route exact path="/dashboard" component={DashboardContainer} />
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/login" component={LoginContainer} />
             </div>

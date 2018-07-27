@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import TextFieldGroup from "./../common/TextFieldGroup";
 
 const Login = ({ email, password, errors, onSubmit, onChange }) => {
   return (
@@ -12,28 +13,26 @@ const Login = ({ email, password, errors, onSubmit, onChange }) => {
               Sign in to your DevConnector account
             </p>
             <form onSubmit={onSubmit}>
-              <div className="form-group">
-                <input
-                  type="email"
-                  className="form-control form-control-lg"
-                  placeholder="Email Address"
-                  name="email"
-                  value={email}
-                  onChange={onChange}
-                />
-                {errors ? errors.email : <div />}
-              </div>
-              <div className="form-group">
-                <input
-                  type="password"
-                  className="form-control form-control-lg"
-                  placeholder="Password"
-                  name="password"
-                  value={password}
-                  onChange={onChange}
-                />
-                {errors ? errors.password : <div />}
-              </div>
+              <TextFieldGroup
+                type="email"
+                className="form-control form-control-lg"
+                placeholder="Email Address"
+                name="email"
+                value={email}
+                onChange={onChange}
+              />
+              {errors ? errors.email : <div />}
+
+              <TextFieldGroup
+                type="password"
+                className="form-control form-control-lg"
+                placeholder="Password"
+                name="password"
+                value={password}
+                onChange={onChange}
+              />
+              {errors ? errors.password : <div />}
+
               <input type="submit" className="btn btn-info btn-block mt-4" />
             </form>
           </div>

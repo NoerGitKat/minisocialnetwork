@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import { logOut } from "./../../actions/authAction";
 
-const Navbar = ({ isAuthenticated, logOut, user }) => {
+const Navbar = ({ isAuthenticated, logOut, user, clearCurrentProfile }) => {
   const loggedOutLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
@@ -22,7 +21,16 @@ const Navbar = ({ isAuthenticated, logOut, user }) => {
   const loggedInLinks = (
     <ul className="navbar-nav ml-auto">
       <li className="nav-item">
-        <a href="" className="nav-link" onClick={logOut}>
+        <a
+          href=""
+          className="nav-link"
+          onClick={e => {
+            e.preventDefault();
+
+            clearCurrentProfile();
+            logOut();
+          }}
+        >
           <img
             className="rounded-circle"
             src={user.avatar}
@@ -69,8 +77,9 @@ const Navbar = ({ isAuthenticated, logOut, user }) => {
 };
 
 Navbar.propTypes = {
-  isAuthenticated: PropTypes.loggedOutLinks,
-  logOut: PropTypes.func
+  isAuthenticated: PropTypes.bool,
+  logOut: PropTypes.func,
+  clearCurrentProfile: PropTypes.func
 };
 
 export default Navbar;
