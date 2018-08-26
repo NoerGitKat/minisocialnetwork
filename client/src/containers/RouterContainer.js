@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import jwt_decode from "jwt-decode";
 import setAuthToken from "./../utils/setAuthToken";
@@ -12,6 +12,8 @@ import NavbarContainer from "./NavbarContainer";
 import Footer from "../components/layout/Footer";
 import LandingContainer from "./LandingContainer";
 import DashboardContainer from "./DashboardContainer";
+import PrivateRouteContainer from "./PrivateRouteContainer";
+import CreateProfileContainer from "./CreateProfileContainer";
 
 import "../App.css";
 
@@ -44,9 +46,22 @@ class RouterContainer extends React.Component {
             <NavbarContainer />
             <Route exact path="/" component={LandingContainer} />
             <div className="container">
-              <Route exact path="/dashboard" component={DashboardContainer} />
               <Route exact path="/register" component={RegisterContainer} />
               <Route exact path="/login" component={LoginContainer} />
+              <Switch>
+                <PrivateRouteContainer
+                  exact
+                  path="/dashboard"
+                  component={DashboardContainer}
+                />
+              </Switch>
+              <Switch>
+                <PrivateRouteContainer
+                  exact
+                  path="/create-profile"
+                  component={CreateProfileContainer}
+                />
+              </Switch>
             </div>
             <Footer />
           </div>

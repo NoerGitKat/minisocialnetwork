@@ -15,11 +15,12 @@ class DashboardCompose extends React.Component {
 }
 
 const mapStateToProps = state => {
-  const { profile } = state.profile;
+  const { profile, loading } = state.profile;
   const { user } = state.auth;
   return {
     profile,
-    user
+    user,
+    loading
   };
 };
 

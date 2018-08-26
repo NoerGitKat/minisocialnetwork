@@ -2,6 +2,7 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
+  PROFILE_SUBMISSION,
   GET_PROFILES,
   GET_ERRORS
 } from "./types";
@@ -39,4 +40,13 @@ export const clearCurrentProfile = () => {
   return {
     type: CLEAR_CURRENT_PROFILE
   };
+};
+
+export const submitProfile = profileSubmission => {
+  console.log("profileSubmission action", profileSubmission.target);
+
+  // return {
+  //   type: PROFILE_SUBMISSION,
+  //   payload: profile
+  // };
 };

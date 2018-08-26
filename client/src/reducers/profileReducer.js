@@ -14,8 +14,6 @@ const initialState = {
 
 function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_PROFILE:
-      return { ...state, profile: action.payload };
     case PROFILE_LOADING:
       return { ...state, loading: true };
     case GET_PROFILE:
