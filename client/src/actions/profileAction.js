@@ -42,9 +42,21 @@ export const clearCurrentProfile = () => {
   };
 };
 
-export const submitProfile = profileSubmission => {
-  console.log("profileSubmission action", profileSubmission.target);
+export const failSubmission = errors => {
+  return {
+    type: GET_ERRORS,
+    errors
+  };
+};
 
+export const submitProfile = (profileSubmission, history) => dispatch => {
+  console.log("profileSubmission action", profileSubmission.target);
+  axios
+    .post("/api/profile", profileData)
+    .then(result => history.push("/dashboard"))
+    .catch(err => {
+      dispatch(failSubmission(errors));
+    });
   // return {
   //   type: PROFILE_SUBMISSION,
   //   payload: profile

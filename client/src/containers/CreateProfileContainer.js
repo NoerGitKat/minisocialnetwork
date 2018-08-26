@@ -10,7 +10,10 @@ class CreateProfileCompose extends React.Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  const { errors } = state.profile;
+  return {
+    errors
+  };
 };
 
 const mapDispatchToProps = dispatch => {
