@@ -1,16 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const SelectListGroup = ({
-  name,
-  className,
-
-  error,
-  info,
-  type,
-
-  options
-}) => {
+const SelectListGroup = ({ name, className, error, info, type, options }) => {
   const selectOptions = options.map(option => (
     <option key={option.label} value={option.value}>
       {option.label}

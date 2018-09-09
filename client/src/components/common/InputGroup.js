@@ -9,7 +9,6 @@ const InputGroup = ({
   icon,
   error,
   type,
-  onChange,
   disabled
 }) => {
   return (
@@ -26,7 +25,6 @@ const InputGroup = ({
         value={value}
         error={error}
         type={type}
-        onChange={onChange}
         disabled={disabled}
       />
       {error && <div className="invalid-feedback">{error}</div>}
@@ -43,7 +41,6 @@ InputGroup.propTypes = {
   error: PropTypes.string,
   info: PropTypes.string,
   type: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
   disabled: PropTypes.string
 };
 

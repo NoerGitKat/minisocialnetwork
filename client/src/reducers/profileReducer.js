@@ -2,6 +2,7 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
+  ADD_SOCIAL_LINKS,
   GET_PROFILES,
   GET_ERRORS
 } from "./../actions/types";
@@ -9,6 +10,7 @@ import {
 const initialState = {
   profile: null,
   profiles: null,
+  showSocialLinks: false,
   loading: false // to show spinner
 };
 
@@ -20,6 +22,8 @@ function reducer(state = initialState, action) {
       return { ...state, loading: false, profile: action.payload };
     case CLEAR_CURRENT_PROFILE:
       return { ...state, profile: null };
+    case ADD_SOCIAL_LINKS:
+      return { ...state, showSocialLinks: !state.showSocialLinks };
     default:
       return state;
   }

@@ -4,7 +4,8 @@ import {
   CLEAR_CURRENT_PROFILE,
   PROFILE_SUBMISSION,
   GET_PROFILES,
-  GET_ERRORS
+  GET_ERRORS,
+  ADD_SOCIAL_LINKS
 } from "./types";
 
 import axios from "axios";
@@ -49,12 +50,27 @@ export const failSubmission = errors => {
   };
 };
 
+export const addSocialLinks = () => {
+  return {
+    type: ADD_SOCIAL_LINKS
+  };
+};
+
 export const submitProfile = (profileSubmission, history) => dispatch => {
-  console.log("profileSubmission action", profileSubmission.target);
+  const {
+    handle,
+    status,
+    company,
+    website,
+    location,
+    skills,
+    githubUsername,
+    bio
+  } = profileSubmission.target;
   axios
-    .post("/api/profile", profileData)
+    .post("/api/profile", profileSubmission)
     .then(result => history.push("/dashboard"))
-    .catch(err => {
+    .catch(errors => {
       dispatch(failSubmission(errors));
     });
   // return {

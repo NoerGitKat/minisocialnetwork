@@ -5,7 +5,12 @@ import TextAreaFieldGroup from "./../common/TextAreaFieldGroup";
 import SelectListGroup from "./../common/SelectListGroup";
 import InputGroup from "./../common/InputGroup";
 
-const CreateProfile = ({ submitProfile, errors }) => {
+const CreateProfile = ({
+  submitProfile,
+  showSocialLinks,
+  addSocialLinks,
+  errors
+}) => {
   const options = [
     { label: "* Select Professional Status", value: 0 },
     { label: "Developer", value: "Developer" },
@@ -22,43 +27,38 @@ const CreateProfile = ({ submitProfile, errors }) => {
     <div>
       <InputGroup
         placeholder="Twitter Profile URL"
-        name=""
+        name="twitterURL"
         icon="fab fa-twitter"
         value={"twitter"}
-        onChange={e => console.log(e)}
-        error={"errors.twitter"}
+        error={errors ? errors.twitter : ""}
       />
       <InputGroup
         placeholder="Facebook Page URL"
-        name=""
+        name="facebookURL"
         icon="fab fa-facebook"
         value={"facebook"}
-        onChange={e => console.log(e)}
-        error={"errors.facebook"}
+        error={errors ? errors.facebook : ""}
       />
       <InputGroup
         placeholder="LinkedIn Profile URL"
         name=""
         icon="fab fa-linkedin"
         value={"linkedin"}
-        onChange={e => console.log(e)}
-        error={"errors.linkedin"}
+        error={errors ? errors.linkedin : ""}
       />
       <InputGroup
         placeholder="Youtube Channel URL"
         name=""
         icon="fab fa-youtube"
         value={"youtube"}
-        onChange={e => console.log(e)}
-        error={"errors.youtube"}
+        error={errors ? errors.youtube : ""}
       />
       <InputGroup
         placeholder="Instagram Page URL"
         name=""
         icon="fab fa-instagram"
         value={"instagram"}
-        onChange={e => console.log(e)}
-        error={"errors.instagram"}
+        error={errors ? errors.instagram : ""}
       />
     </div>
   );
@@ -76,6 +76,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
             <form
               onSubmit={e => {
                 e.preventDefault();
+                console.log("e", e.target);
                 submitProfile(e);
               }}
             >
@@ -84,8 +85,6 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 name="handle"
                 className="form-control form-control-lg"
                 label="handle"
-                value={"insert Redux handle value"}
-                onChange={() => console.log("its changing!")}
                 error={"insert Redux errors "}
                 info="A unique handle for your profile URL. Your full name, company name, nickname, etc"
               />
@@ -94,7 +93,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 className="form-control form-control-lg"
                 name="status"
                 value={"status of user object"}
-                errors={"errors.status"}
+                error={errors ? errors.status : ""}
                 info="Give us an idea of where you are at in your career"
                 options={options}
               />
@@ -105,7 +104,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="company"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.company"}
+                error={errors ? errors.company : ""}
                 info="Could be your own company or one you work for"
               />
               <TextFieldGroup
@@ -115,7 +114,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="website"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.website"}
+                error={errors ? errors.website : ""}
                 info="Could be your own website or your company's"
               />
               <TextFieldGroup
@@ -125,7 +124,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="location"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.location"}
+                error={errors ? errors.location : ""}
                 info="City or city & state suggested (eg. Boston, MA)"
               />
               <TextFieldGroup
@@ -135,7 +134,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="skills"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.skills"}
+                error={errors ? errors.skills : ""}
                 info="Please user comma separated values"
               />
               <TextFieldGroup
@@ -145,7 +144,7 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="githubUsername"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.githubUsername"}
+                error={errors ? errors.githubUsername : ""}
                 info="If you want your latest repos and a GitHub link, include your username"
               />
               <TextAreaFieldGroup
@@ -155,21 +154,21 @@ const CreateProfile = ({ submitProfile, errors }) => {
                 label="bio"
                 value={"insert Redux handle value"}
                 onChange={() => console.log("its changing!")}
-                error={"errors.bio"}
+                error={errors ? errors.bio : ""}
                 info="Tell us a little about yourself"
               />
               <div className="mb-3">
                 <button
                   className="btn btn-light"
                   onClick={() => {
-                    //some action fires to toggle Boolean
-                    console.log;
+                    addSocialLinks();
                   }}
                 >
                   Add Social Network Links
                 </button>
                 <span className="text-muted">Optional</span>
               </div>
+              {showSocialLinks ? socialInputs : <div />}
               <input
                 type="submit"
                 value="Submit!"
